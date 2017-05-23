@@ -35,7 +35,7 @@ public class XMLEasy {
     private Document document;
     private Element currentElement;
     private byte[] xmlBytes;
-    private boolean traverse;
+    private boolean frozen;
 
     /**
      * Creates a new {@link XMLEasy} instance for an XML {@link Element}
@@ -528,23 +528,21 @@ public class XMLEasy {
     }
 
     /**
-     * Activates the traversing mode.
-     * When traversing mode is ON, the single-child element navigation methods will
-     * perform navigation on the current {@link XMLEasy} instance. No new {@link XMLEasy} instance will be returned
-     * upon invocation of any of the previously referred methods. Are considered single-child elements navigation methods, the following:
+     * Makes this {@link XMLEasy} instance immutable, meaning any invocation of a single-child element navigation methods will
+     * return a new {@link XMLEasy} instance. Are considered single-child elements navigation methods, the following:
      * {@link #child()}, {@link #child(String)}, {@link #firstChild()}, {@link #firstChild(String)}, {@link #lastChild(String)} and {@link #lastChild()}.
      * @return the current {@link XMLEasy} instance.
      */
-    public XMLEasy traverse(){
+    public XMLEasy freeze(){
 
-        this.traverse = true;
+        this.frozen = true;
         return this;
 
     }
 
     private XMLEasy wrap(Element element){
 
-        if(!traverse)
+        if(frozen)
             return easy(element);
 
         this.currentElement = element;

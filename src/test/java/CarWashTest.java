@@ -6,7 +6,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static org.emerjoin.xmleasy.Paths.*;
 import static org.junit.Assert.*;
@@ -99,21 +98,24 @@ public class CarWashTest {
                 .findFirst();
 
         assertTrue(washer.isPresent());
-        XMLEasy washerElement = easy(washer.get());
+        XMLEasy washerElement = easy(washer.get()).freeze();
         assertEquals("Mario",washerElement.child("name").child("first-name").getContent());
         assertEquals("Junior",washerElement.child("name").child("surname").getContent());
 
     }
+
+
+
     @Test
     public void one_washer_with_24_years_old_must_be_found() throws Exception{
 
-        XMLEasy xml = getInstance();
+        XMLEasy xml = getInstance().freeze();
         Optional<Element> washer = xml.lastChild().streamChildren()
                 .filter((el -> easy(el).lastChild().getContent().equals("24")))
                 .findFirst();
 
         assertTrue(washer.isPresent());
-        XMLEasy washerElement = easy(washer.get());
+        XMLEasy washerElement = easy(washer.get()).freeze();
         assertEquals("Mario",washerElement.firstChild().firstChild().getContent());
         assertEquals("Junior",washerElement.firstChild().lastChild().getContent());
 
@@ -144,7 +146,7 @@ public class CarWashTest {
     @Test
     public void child_and_first_child_traverse_with_tag_name_test() throws Exception{
 
-        XMLEasy xml = getInstance().traverse();
+        XMLEasy xml = getInstance();
         xml.child("cars").firstChild("car").firstChild("brand");
         assertEquals("brand",xml.getTag());
         assertEquals("Toyota",xml.getContent());
@@ -154,7 +156,7 @@ public class CarWashTest {
     @Test
     public void child_and_first_child_traverse_test() throws Exception{
 
-        XMLEasy xml = getInstance().traverse();
+        XMLEasy xml = getInstance();
         xml.firstChild().firstChild().firstChild();
         assertEquals("brand",xml.getTag());
         assertEquals("Toyota",xml.getContent());
@@ -164,7 +166,7 @@ public class CarWashTest {
     @Test
     public void child_and_last_child_and_first_child_traverse_with_tag_name_test() throws Exception{
 
-        XMLEasy xml = getInstance().traverse();
+        XMLEasy xml = getInstance();
         xml.child("cars").lastChild("car").firstChild("model");
         assertEquals("model",xml.getTag());
         assertEquals("325",xml.getContent());
@@ -174,7 +176,7 @@ public class CarWashTest {
     @Test
     public void child_and_last_child_and_first_child_traverse_test() throws Exception{
 
-        XMLEasy xml = getInstance().traverse().firstChild().lastChild().lastChild();
+        XMLEasy xml = getInstance().firstChild().lastChild().lastChild();
         assertEquals("model",xml.getTag());
         assertEquals("325",xml.getContent());
 
@@ -183,7 +185,7 @@ public class CarWashTest {
     @Test
     public void single_child_traverse_with_tag_names_test() throws Exception{
 
-        XMLEasy xml = getInstance().traverse();
+        XMLEasy xml = getInstance();
         xml.child("clients").child().child();
         assertEquals("name",xml.getTag());
         assertEquals("John Doe",xml.getContent());
@@ -197,7 +199,7 @@ public class CarWashTest {
                 .filter(el -> el.getTagName().equals("clients"))
                 .findFirst();
         assertTrue(element.isPresent());
-        XMLEasy xml = easy(element.get()).traverse().firstChild().child();
+        XMLEasy xml = easy(element.get()).freeze().firstChild().child();
         assertEquals("name",xml.getTag());
         assertEquals("John Doe",xml.getContent());
 
@@ -207,9 +209,9 @@ public class CarWashTest {
     @Test
     public void get_attribute_test() throws Exception{
 
-        String firstColor = getInstance().traverse().firstChild().firstChild().attribute("color");
+        String firstColor = getInstance().freeze().firstChild().firstChild().attribute("color");
         assertEquals("red",firstColor);
-        String secondColor = getInstance().traverse().firstChild().lastChild().attribute("color");
+        String secondColor = getInstance().freeze().firstChild().lastChild().attribute("color");
         assertEquals("black",secondColor);
 
     }
@@ -218,11 +220,11 @@ public class CarWashTest {
     @Test
     public void get_optional_attribute_test() throws Exception{
 
-        Optional<String> firstWashDate = getInstance().traverse().firstChild()
+        Optional<String> firstWashDate = getInstance().freeze().firstChild()
                 .firstChild().optionalAttribute("wash-date");
         assertTrue(firstWashDate.isPresent());
         assertEquals("12/12/2014",firstWashDate.get());
-        Optional<String> secondWashDate = getInstance().traverse().firstChild()
+        Optional<String> secondWashDate = getInstance().freeze().firstChild()
                 .lastChild().optionalAttribute("wash-date");
         assertFalse(secondWashDate.isPresent());
 
