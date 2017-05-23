@@ -203,7 +203,7 @@ Lets use XMLEasy to get to the only reader in Maputo-Cidade (Mario Junior)
 ```
 
 
-The code we just wrote creates exactly 1 XMLEasy object instance
+The code we just wrote creates exactly one (1) XMLEasy object instance
 and changes its internal state as we navigate.
 
 By default, the same XMLEasy instance is returned when invoking any of the following methods: 
