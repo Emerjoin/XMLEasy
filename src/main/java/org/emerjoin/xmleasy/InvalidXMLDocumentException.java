@@ -5,7 +5,7 @@ import org.xml.sax.SAXException;
 import java.net.URL;
 
 /**
- * @author Mário Júnior
+ * @author Mario Junior
  */
 public class InvalidXMLDocumentException extends XMLValidationException {
 

@@ -5,7 +5,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * @author Mário Júnior
+ * Provides static methods to convert String and File instances to URL instances.
+ * @author Mario Junior
  */
 public class Paths {
 

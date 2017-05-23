@@ -1,7 +1,7 @@
 package org.emerjoin.xmleasy;
 
 /**
- * @author Mário Júnior
+ * @author Mario Junior
  */
 public class XMLValidationException extends XMLException {
 

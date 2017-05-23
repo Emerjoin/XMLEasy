@@ -26,7 +26,7 @@ import java.util.stream.Stream;
 /**
  * Represents the XMLEasy public API.
  * Object instances of this class are not Thread-safe
- * @author Mário Júnior
+ * @author Mario Junior
  */
 public class XMLEasy {
 
@@ -118,6 +118,10 @@ public class XMLEasy {
     }
 
 
+    /**
+     * Checks if the current element has child elements.
+     * @return true if the current element has child elements, otherwise false.
+     */
     public boolean hasChildren(){
         return hasChild();
 
