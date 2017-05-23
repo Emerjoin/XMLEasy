@@ -62,7 +62,7 @@ Consider the following XML document
 
 ```
 
-### Transforming car elements into Car object instances using java 8 Streams API
+### Transforming <car> elements into Car object instances using java 8 Streams API
 
 ```java
    
@@ -75,7 +75,7 @@ Consider the following XML document
 
 
 
-### Find car elements already washed (with wash-date attribute) using java 8 Streams API
+### Find <car> elements already washed (with wash-date attribute) using java 8 Streams API
 
 ```java
     
@@ -89,7 +89,7 @@ Consider the following XML document
 ```
 
 
-### Find one car record with yellow color using java 8 Streams API
+### Find one <car> record with yellow color using java 8 Streams API
 
 ```java
        
@@ -101,7 +101,7 @@ Consider the following XML document
 ```
 
 
-### Get the full name of the last washer element using java 8 Streams API
+### Get the full name of the last <washer> element using java 8 Streams API
 
 
 ```java
@@ -175,7 +175,7 @@ Consider the following xml document:
 
 ```
 
-Lets use XMLEasy to get to the only reader in Maputo-Cidade (Mario Junior)
+Lets use XMLEasy to get to the only <Reader> in __Maputo-Cidade__ (Mario Junior)
 
 ```java
     
@@ -191,8 +191,7 @@ Lets use XMLEasy to get to the only reader in Maputo-Cidade (Mario Junior)
 ```
 
 
-The code we just wrote creates exactly one (1) XMLEasy object instance
-and changes its internal state as we navigate.
+The code we just wrote creates exactly one (1) XMLEasy object instance and changes its internal state as we navigate.
 
 By default, the same XMLEasy instance is returned when invoking any of the following methods: 
 [child()](https://emerjoin.github.io/XMLEasy/java-docs/org/emerjoin/xmleasy/XMLEasy.html#child--), [child(String)](https://emerjoin.github.io/XMLEasy/java-docs/org/emerjoin/xmleasy/XMLEasy.html#child-java.lang.String-), [firstChild()](https://emerjoin.github.io/XMLEasy/java-docs/org/emerjoin/xmleasy/XMLEasy.html#firstChild--), [firstChild(String)](https://emerjoin.github.io/XMLEasy/java-docs/org/emerjoin/xmleasy/XMLEasy.html#firstChild-java.lang.String-), [lastChild(String)](https://emerjoin.github.io/XMLEasy/java-docs/org/emerjoin/xmleasy/XMLEasy.html#lastChild-java.lang.String-) and [lastChild()](https://emerjoin.github.io/XMLEasy/java-docs/org/emerjoin/xmleasy/XMLEasy.html#lastChild--).
@@ -215,7 +214,7 @@ Sometimes we might want to use the same XMLEasy instance in multiple operations.
 not modified: make it immutable. Making it immutable is to freeze it,
 meaning it's internal state will be preserved and any navigation method invocation will result in a new XMLEasy instance.
 
-Consider we wanted to get XMLEasy instances of the only two book readers in our XML document. The one from Maputo-Cidade and the other from Sao-Paulo.
+Consider we wanted to get XMLEasy instances of the only two book <Reader>s in our XML document. The one from __Maputo-Cidade__ and the other from __Sao-Paulo__.
 Here is how we would do it:
 
 ```java
