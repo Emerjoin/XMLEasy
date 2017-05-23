@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://examples/person/details"
+xmlns:d="http://examples/person/details">
+
+    <xsd:complexType name="DetailsType">
+        <xsd:sequence>
+            <xsd:sequence>
+                <xsd:element name="age" type="xsd:int"></xsd:element>
+                <xsd:element name="height" type="xsd:decimal"></xsd:element>
+            </xsd:sequence>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="info" type="d:DetailsType"></xsd:element>
+
+</xsd:schema>

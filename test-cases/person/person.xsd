@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://examples/case1"
+xmlns:t="http://examples/case1" elementFormDefault="qualified">
+
+    <xsd:complexType name="NameType">
+        <xsd:sequence>
+            <xsd:element name="first-name" type="xsd:string"></xsd:element>
+            <xsd:element name="last-name" type="xsd:string"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="PersonType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="name" type="t:NameType"></xsd:element>
+            <xsd:any maxOccurs="1" minOccurs="1" processContents="strict"></xsd:any>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:element name="Person" type="t:PersonType"></xsd:element>
+
+</xsd:schema>

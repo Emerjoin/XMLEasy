@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Carwash>
+    <cars>
+        <car wash-date="12/12/2014" color="red">
+            <brand>Toyota</brand>
+            <model>Supra</model>
+        </car>
+
+        <car color="black">
+            <brand>BMW</brand>
+            <model>325</model>
+        </car>
+    </cars>
+    <clients>
+        <client>
+            <name>John Doe</name>
+        </client>
+    </clients>
+    <washers>
+        <washer>
+            <name>
+                <first-name>Mario</first-name>
+
+                <surname>Junior</surname>
+            </name>
+            <age>24</age>
+        </washer>
+        <washer>
+
+            <name>
+
+                <first-name>Romildo</first-name>
+                <surname>Cumbe</surname>
+            </name>
+
+            <age>21</age>
+        </washer>
+        <washer>
+
+            <name>
+
+                <first-name>Aurio</first-name>
+
+                <surname>Tino</surname>
+            </name>
+
+            <age>21</age>
+
+        </washer>
+    </washers>
+</Carwash>

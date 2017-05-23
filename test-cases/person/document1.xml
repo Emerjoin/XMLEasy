@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<p:Person xmlns:p="http://examples/case1" xmlns:d="http://examples/person/details">
+
+    <p:name>
+        <p:first-name>Mario</p:first-name>
+        <p:last-name>Junior</p:last-name>
+    </p:name>
+
+    <d:info>
+        <d:age>12</d:age>
+        <d:height>13.2</d:height>
+    </d:info>
+
+</p:Person>
