@@ -6,10 +6,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.emerjoin.xmleasy.Paths.*;
 import static org.junit.Assert.*;
-import static org.emerjoin.xmleasy.XMLEasy.*;
+import static org.emerjoin.xmleasy.XMLEasy.easy;
 
 /**
  * @author Mário Júnior
@@ -193,7 +194,7 @@ public class CarWashTest {
     public void single_child_traverse_test() throws Exception{
 
         Optional<Element> element = getInstance().streamChildren()
-                .filter((el-> el.getTagName().equals("clients")))
+                .filter(el -> el.getTagName().equals("clients"))
                 .findFirst();
         assertTrue(element.isPresent());
         XMLEasy xml = easy(element.get()).traverse().firstChild().child();
