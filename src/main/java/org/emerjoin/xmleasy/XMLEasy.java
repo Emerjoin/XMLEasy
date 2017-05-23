@@ -529,9 +529,10 @@ public class XMLEasy {
 
     /**
      * Activates the traversing mode.
-     * When traversing mode is ON, {@link #child()}, {@link #child(String)} and {@link #firstChild(String)} will
+     * When traversing mode is ON, the single-child element navigation methods will
      * perform navigation on the current {@link XMLEasy} instance. No new {@link XMLEasy} instance will be returned
-     * upon invocation of any of the previously referred methods.
+     * upon invocation of any of the previously referred methods. Are considered single-child elements navigation methods, the following:
+     * {@link #child()}, {@link #child(String)}, {@link #firstChild()}, {@link #firstChild(String)}, {@link #lastChild(String)} and {@link #lastChild()}.
      * @return the current {@link XMLEasy} instance.
      */
     public XMLEasy traverse(){

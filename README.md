@@ -7,6 +7,7 @@ A simple Java XML library to validate and read XML Documents using the SAX Parse
 ## Usage examples
 
 Consider the following XML document
+
 ```xml
     <?xml version="1.0" encoding="UTF-8" ?>
     <Carwash xmlns="whatever.namespace/you/want">
@@ -78,39 +79,42 @@ Consider the following XML document
 
 ```java
     
-    //Static method import
-    import static org.emerjoin.xmleasy.XMLEasy.easy;
-    
-    //...
     
     URL xmlDocument = //whatever
        List<Element> cars = new XMLEasy(xmlDocument).firstChild().streamChildren()
-            .filter(element -> easy(element).optionalAttribute("wash-date").isPresent())
+            .filter(element -> XMLEasy.easy(element).optionalAttribute("wash-date").isPresent())
             .collect(Collectors.toList());
     
 
 ```
 
 
-### Find car records with yellow color using java 8 Streams API
+### Find one car record with yellow color using java 8 Streams API
 
 ```java
-    
-    //Static method import
-    import static org.emerjoin.xmleasy.XMLEasy.easy;
-    
-    //...
-    
+       
     URL xmlDocument = //whatever
-       List<Element> cars = new XMLEasy(xmlDocument).firstChild().streamChildren()
-            .filter(element -> easy(element).optionalAttribute("wash-date").isPresent())
-            .collect(Collectors.toList());
-    
+       Optional<Element> carElement = new XMLEasy(xmlDocument).firstChild().streamChildren()
+            .filter(element -> XMLEasy.easy(element).attribute("color").equals("yellow"))
+            .findFirst();  
 
 ```
 
 
 ### Get the full name of the last washer element using java 8 Streams API
+
+
+```java
+
+     URL xmlDocument = //whatever
+           String fullName = new XMLEasy(xmlDocument).lastChild()
+           .streamChildren()
+           .map(element -> XMLEasy.easy(element).firstChild().getContent() 
+           + " " +XMLEasy.easy(element).lastChild().getContent())
+           .findFirst().get;
+         
+           
+```
 
 
 ### Validate the document against one XML Schema
@@ -120,3 +124,6 @@ Consider the following XML document
 
 
 ### Validate the document and get the model of the last car element (methods chaining)
+
+
+## Traversing
