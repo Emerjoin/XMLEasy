@@ -146,18 +146,6 @@ Consider the following xml document:
 ```xml
     <?xml version="1.0" encoding="UTF-8" ?>
     <Online-Library>
-        <Books>
-            <book>  
-                <isbn>100000131313</isbn>
-                <title>The Life of a Coder</title>
-                <available>false</available>
-            </book>
-            <book>  
-                 <isbn>134000451320</isbn>
-                 <title>The Glory of life</title>
-                 <available>true</available>
-            </book>
-        </Books>
         <Readers>
             <Africa>
                 <Mozambique>
@@ -193,7 +181,7 @@ Lets use XMLEasy to get to the only reader in Maputo-Cidade (Mario Junior)
     
      URL documentURL = //whatever
      XMLEasy xml = new XMLEasy(documentURL) //<Online-Library>
-                        .lastChild() //<Readers>
+                        .firstChild() //<Readers>
                         .firstChild() //<Africa>
                         .firstChild() //<Mozambique>
                         .firstChild() //<Maputo-Cidade>
@@ -214,7 +202,7 @@ By default, the same XMLEasy instance is returned when invoking any of the follo
     
      URL documentURL = //whatever
      XMLEasy xml = new XMLEasy(documentURL) //new XMLEasy instance
-                        .lastChild() //same XMLEasy instance
+                        .firstChild() //same XMLEasy instance
                         .firstChild() //same XMLEasy instance
                         .firstChild() //same XMLEasy instance
                         .firstChild() //same XMLEasy instance
@@ -237,14 +225,14 @@ Here is how we would do it:
      XMLEasy xml = new XMLEasy(documentURL) //new XMLEasy instance
             .freeze(); //Make this XMLEasy instance immutable
      
-     XMLEasy maputoBookReader = xml.lastChild() //new XMLEasy instance : <Readers>
+     XMLEasy maputoBookReader = xml.firstChild() //new XMLEasy instance : <Readers>
                         .firstChild() //<Africa>
                         .firstChild() //<Mozambique>
                         .firstChild() //<Maputo-Cidade>
                         .firstChild();//<Reader>
                         
                         
-     XMLEasy saoPauloBookReader = xml.lastChild() //new XMLEasy instance : <Readers>
+     XMLEasy saoPauloBookReader = xml.firstChild() //new XMLEasy instance : <Readers>
                              .lastChild() //<America>
                              .firstChild() //<Brasil>
                              .firstChild() //<Sao-Paulo>
