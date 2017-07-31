@@ -148,6 +148,16 @@ public class XMLEasy {
 
     }
 
+
+    public ChildPresence ifChild(String tag){
+
+        if(hasChild(tag))
+            return new ChildPresence(child(tag),this);
+
+        return new ChildPresence(null,this);
+
+    }
+
     /**
      * Selects the first child element with a specific tag name.
      * @param tag the child element tag name.
