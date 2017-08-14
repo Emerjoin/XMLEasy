@@ -1,10 +1,13 @@
 package org.emerjoin.xmleasy;
 
 import com.sun.org.apache.xerces.internal.jaxp.validation.XMLSchemaFactory;
+import org.apache.commons.io.IOUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.ls.LSInput;
+import org.w3c.dom.ls.LSResourceResolver;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -36,6 +39,7 @@ public class XMLEasy {
     private Element currentElement;
     private byte[] xmlBytes;
     private boolean frozen;
+    private LSResourceResolver resolver;
 
     /**
      * Creates a new {@link XMLEasy} instance for an XML {@link Element}
@@ -92,18 +96,16 @@ public class XMLEasy {
 
         try {
 
-            if(xmlStream!=null){
-                xmlBytes = getBytes(xmlStream);
-                xmlStream = new ByteArrayInputStream(xmlBytes);
-            }else xmlBytes = getBytes(xmlURL.openStream());
+            if(xmlStream!=null)
+                xmlBytes = IOUtils.toByteArray(xmlStream);
+            else xmlBytes = IOUtils.toByteArray(xmlURL);
+
+            xmlStream = new ByteArrayInputStream(xmlBytes);
 
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
-            if(xmlURL!=null)
-                document = db.parse(xmlURL.openStream());
-            else
-                document = db.parse(xmlStream);
 
+            document = db.parse(xmlStream);
             currentElement = document.getDocumentElement();
 
 
@@ -489,6 +491,10 @@ public class XMLEasy {
 
             XMLSchemaFactory factory =
                     new XMLSchemaFactory();
+
+            if(resolver!=null)
+                factory.setResourceResolver(resolver);
+
             Source xmlSource = new StreamSource(byteArray1);
             Schema schema = factory.newSchema(schemaSources);
             Validator validator = schema.newValidator();
@@ -505,6 +511,19 @@ public class XMLEasy {
 
         }
 
+        return this;
+
+    }
+
+
+    /**
+     * Set's an XML Schemas resource resolver to be used during validation.
+     * @param resolver - the LSResourceResolver to be used during validation.
+     */
+    public XMLEasy setResolver(LSResourceResolver resolver){
+        if(resolver==null)
+            throw new IllegalArgumentException("Resources resolver instance must not be null");
+        this.resolver = resolver;
         return this;
 
     }
@@ -558,6 +577,9 @@ public class XMLEasy {
         this.currentElement = element;
         return this;
     }
+
+
+
 
 
 }
